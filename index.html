@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reshma — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:        #1a1a2e;
+      --sand:       #f5f0e8;
+      --gold:       #c9a84c;
+      --rose:       #e8d5c4;
+      --muted:      #8a8070;
+      --white:      #fdfcf9;
+      --accent-line:#c9a84c44;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--sand);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.4rem 4rem;
+      background: var(--sand);
+      border-bottom: 1px solid var(--accent-line);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 600; letter-spacing: .06em;
+      color: var(--ink); text-decoration: none;
+    }
+    .nav-logo span { color: var(--gold); }
+    nav ul { list-style: none; display: flex; gap: 2.5rem; }
+    nav a {
+      text-decoration: none; color: var(--muted);
+      font-size: .82rem; letter-spacing: .12em; text-transform: uppercase;
+      transition: color .25s;
+    }
+    nav a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
+    }
+    .hero-text {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 6rem 4rem 6rem 8rem;
+    }
+    .eyebrow {
+      font-size: .75rem; letter-spacing: .25em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.2rem;
+    }
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 6vw, 6rem);
+      font-weight: 300; line-height: 1.05; letter-spacing: -.01em;
+      margin-bottom: 1.8rem;
+    }
+    h1 em { font-style: italic; color: var(--gold); }
+    .hero-desc {
+      font-size: 1rem; color: var(--muted); max-width: 38ch;
+      margin-bottom: 2.8rem; line-height: 1.8;
+    }
+    .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-block; text-decoration: none; font-size: .82rem;
+      letter-spacing: .1em; text-transform: uppercase; padding: .85rem 2rem;
+      transition: all .3s;
+    }
+    .btn-primary {
+      background: var(--ink); color: var(--white);
+      border: 1.5px solid var(--ink);
+    }
+    .btn-primary:hover { background: var(--gold); border-color: var(--gold); }
+    .btn-outline {
+      background: transparent; color: var(--ink);
+      border: 1.5px solid var(--ink);
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    .hero-visual {
+      position: relative; background: var(--rose);
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    .hero-shape {
+      width: 320px; height: 420px;
+      background: linear-gradient(160deg, #e8c99a 0%, #c9a84c 100%);
+      border-radius: 200px 200px 180px 180px;
+      position: relative; overflow: hidden;
+      box-shadow: 0 40px 80px #00000022;
+    }
+    .hero-initials {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 10rem; font-weight: 300; color: #fff8;
+      letter-spacing: -.04em; user-select: none;
+    }
+    .floating-tag {
+      position: absolute; background: var(--white);
+      padding: .6rem 1.2rem; border-radius: 2px;
+      font-size: .78rem; letter-spacing: .08em; text-transform: uppercase;
+      box-shadow: 0 8px 24px #00000018;
+    }
+    .tag1 { top: 22%; left: -30px; }
+    .tag2 { bottom: 28%; right: -24px; color: var(--gold); }
+
+    /* ── SECTIONS SHARED ── */
+    section { padding: 7rem 8rem; }
+    .section-label {
+      font-size: .7rem; letter-spacing: .3em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: .8rem;
+    }
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300; line-height: 1.15; margin-bottom: 1rem;
+    }
+    .divider {
+      width: 48px; height: 1.5px; background: var(--gold); margin: 1.6rem 0 3rem;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--white); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .about-text p { color: var(--muted); margin-bottom: 1.2rem; font-size: .98rem; }
+    .skills-list {
+      display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 2rem;
+    }
+    .skill-chip {
+      border: 1px solid var(--gold); color: var(--ink);
+      font-size: .74rem; letter-spacing: .1em; text-transform: uppercase;
+      padding: .4rem 1rem; border-radius: 1px;
+    }
+    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .stat { border-top: 1px solid var(--accent-line); padding-top: 1.4rem; }
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.2rem; font-weight: 300; color: var(--gold); line-height: 1;
+    }
+    .stat-label { font-size: .78rem; color: var(--muted); letter-spacing: .08em; margin-top: .3rem; }
+
+    /* ── WORK ── */
+    #work { background: var(--sand); }
+    .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .card {
+      background: var(--white); padding: 2.4rem;
+      border-top: 2px solid transparent;
+      transition: border-color .3s, transform .3s;
+      cursor: default;
+    }
+    .card:hover { border-color: var(--gold); transform: translateY(-6px); }
+    .card-tag { font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+    .card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 400; margin-bottom: .8rem;
+    }
+    .card p { font-size: .88rem; color: var(--muted); line-height: 1.7; }
+    .card-link {
+      display: inline-block; margin-top: 1.4rem; font-size: .75rem;
+      letter-spacing: .12em; text-transform: uppercase; color: var(--ink);
+      text-decoration: none; border-bottom: 1px solid var(--gold); padding-bottom: 2px;
+    }
+
+    /* ── EXPERIENCE ── */
+    #experience { background: var(--ink); color: var(--sand); }
+    #experience h2 { color: var(--white); }
+    #experience .section-label { color: var(--gold); }
+    .timeline { margin-top: 1rem; }
+    .timeline-item {
+      display: grid; grid-template-columns: 180px 1fr;
+      gap: 2.5rem; padding: 2.4rem 0;
+      border-bottom: 1px solid #ffffff12;
+    }
+    .timeline-item:last-child { border-bottom: none; }
+    .timeline-period { font-size: .8rem; color: var(--gold); letter-spacing: .08em; padding-top: .2rem; }
+    .timeline-content h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; font-weight: 400; color: var(--white); margin-bottom: .3rem;
+    }
+    .timeline-company { font-size: .82rem; color: var(--gold); margin-bottom: .7rem; }
+    .timeline-desc { font-size: .9rem; color: #b0a898; line-height: 1.7; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--rose); text-align: center; }
+    #contact h2 { font-size: clamp(2.5rem, 5vw, 4rem); }
+    #contact p { color: var(--muted); max-width: 46ch; margin: 0 auto 2.5rem; }
+    .contact-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 3rem; }
+    .contact-link {
+      text-decoration: none; color: var(--ink);
+      font-size: .78rem; letter-spacing: .16em; text-transform: uppercase;
+      border-bottom: 1px solid var(--gold); padding-bottom: 3px;
+      transition: color .25s;
+    }
+    .contact-link:hover { color: var(--gold); }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center; padding: 2rem;
+      background: var(--ink); color: #4a4540;
+      font-size: .75rem; letter-spacing: .1em; text-transform: uppercase;
+    }
+
+    /* ── SCROLL ANIMATION ── */
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 2rem; }
+      nav ul { gap: 1.5rem; }
+      #hero { grid-template-columns: 1fr; }
+      .hero-text { padding: 6rem 2rem 3rem; }
+      .hero-visual { height: 340px; }
+      section { padding: 5rem 2rem; }
+      .about-grid, .work-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .timeline-item { grid-template-columns: 1fr; gap: .5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">Reshma<span>.</span></a>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-text">
+    <p class="eyebrow">Designer &amp; Developer</p>
+    <h1>Hello, I'm<br><em>Reshma</em></h1>
+    <p class="hero-desc">
+      I craft meaningful digital experiences — where elegant design meets purposeful code.
+      Turning ideas into interfaces that people love to use.
+    </p>
+    <div class="btn-group">
+      <a class="btn btn-primary" href="#work">View My Work</a>
+      <a class="btn btn-outline" href="#contact">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-shape">
+      <div class="hero-initials">R</div>
+    </div>
+    <div class="floating-tag tag1">UI / UX Design</div>
+    <div class="floating-tag tag2">Frontend Dev</div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="reveal">
+    <p class="section-label">Who I Am</p>
+    <h2>Thoughtful design,<br>built with care</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>
+        I'm Reshma — a designer and developer with a passion for creating digital spaces that feel
+        intentional, beautiful, and genuinely useful. My work sits at the intersection of
+        aesthetics and engineering.
+      </p>
+      <p>
+        I believe every pixel has a purpose. Whether I'm sketching wireframes or writing clean CSS,
+        I bring the same obsessive attention to detail and a deep respect for the user's experience.
+      </p>
+      <div class="skills-list">
+        <span class="skill-chip">UI / UX</span>
+        <span class="skill-chip">HTML & CSS</span>
+        <span class="skill-chip">JavaScript</span>
+        <span class="skill-chip">React</span>
+        <span class="skill-chip">Figma</span>
+        <span class="skill-chip">Branding</span>
+        <span class="skill-chip">Typography</span>
+        <span class="skill-chip">Motion</span>
+      </div>
+    </div>
+    <div class="about-stats reveal">
+      <div class="stat"><div class="stat-number">3+</div><div class="stat-label">Years of Experience</div></div>
+      <div class="stat"><div class="stat-number">28</div><div class="stat-label">Projects Delivered</div></div>
+      <div class="stat"><div class="stat-number">14</div><div class="stat-label">Happy Clients</div></div>
+      <div class="stat"><div class="stat-number">∞</div><div class="stat-label">Ideas in the Queue</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="reveal">
+    <p class="section-label">Selected Projects</p>
+    <h2>Work I'm proud of</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="work-grid">
+    <div class="card reveal">
+      <p class="card-tag">Web App</p>
+      <h3>Bloom Dashboard</h3>
+      <p>A data-rich analytics platform designed for clarity — transforming complex metrics into calm, readable layouts.</p>
+      <a class="card-link" href="#">View Project →</a>
+    </div>
+    <div class="card reveal">
+      <p class="card-tag">Branding</p>
+      <h3>Saffron Studio</h3>
+      <p>Brand identity and website for an artisan spice company — rooted in warmth, heritage, and sensory richness.</p>
+      <a class="card-link" href="#">View Project →</a>
+    </div>
+    <div class="card reveal">
+      <p class="card-tag">Mobile UI</p>
+      <h3>Calm Paths App</h3>
+      <p>A mindfulness companion app with a gentle visual language — every screen designed to slow you down, not speed you up.</p>
+      <a class="card-link" href="#">View Project →</a>
+    </div>
+    <div class="card reveal">
+      <p class="card-tag">E-Commerce</p>
+      <h3>Vela Jewellery</h3>
+      <p>A luxury jewellery store experience — editorial photography, a restrained palette, and a checkout that feels effortless.</p>
+      <a class="card-link" href="#">View Project →</a>
+    </div>
+    <div class="card reveal">
+      <p class="card-tag">Design System</p>
+      <h3>Arcus UI Kit</h3>
+      <p>A comprehensive component library built for scale — tokens, patterns, and documentation that a team can actually use.</p>
+      <a class="card-link" href="#">View Project →</a>
+    </div>
+    <div class="card reveal">
+      <p class="card-tag">Landing Page</p>
+      <h3>Nova Launch</h3>
+      <p>High-conversion launch page for a SaaS product — storytelling-first structure, with interactive demos woven in.</p>
+      <a class="card-link" href="#">View Project →</a>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="reveal">
+    <p class="section-label">Career</p>
+    <h2>Where I've worked</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <div class="timeline-period">2023 — Present</div>
+      <div class="timeline-content">
+        <h3>Senior UI/UX Designer</h3>
+        <div class="timeline-company">Pixel & Form Studio</div>
+        <p class="timeline-desc">Leading design for client projects across fintech, wellness, and e-commerce. Running design sprints, building systems, and mentoring junior designers.</p>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-period">2021 — 2023</div>
+      <div class="timeline-content">
+        <h3>UI Developer</h3>
+        <div class="timeline-company">Luminary Tech</div>
+        <p class="timeline-desc">Built and maintained responsive front-end interfaces for a growing SaaS platform. Collaborated closely with product and engineering teams.</p>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-period">2020 — 2021</div>
+      <div class="timeline-content">
+        <h3>Freelance Designer</h3>
+        <div class="timeline-company">Independent</div>
+        <p class="timeline-desc">Delivered branding, websites, and UI projects for small businesses and startups. Learned to juggle client expectations with creative vision.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="reveal">
+    <p class="section-label">Let's Talk</p>
+    <h2>Got a project<br>in mind?</h2>
+    <div class="divider" style="margin: 1.6rem auto 1.5rem;"></div>
+    <p>I'm open to new opportunities, collaborations, and conversations. Drop me a line — I'd love to hear what you're building.</p>
+    <a class="btn btn-primary" href="mailto:reshma@email.com">Send Me a Message</a>
+    <div class="contact-links">
+      <a class="contact-link" href="#">LinkedIn</a>
+      <a class="contact-link" href="#">GitHub</a>
+      <a class="contact-link" href="#">Dribbble</a>
+      <a class="contact-link" href="#">Behance</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 Reshma &nbsp;·&nbsp; Designed &amp; Built with ♥
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
